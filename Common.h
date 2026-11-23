@@ -10,8 +10,10 @@
 #define ALL_FILES_FILTER														"*.*"
 #define NEW_LINE_TEXT															"\r\n"
 
-#define WINDOW_BORDER_WIDTH														::GetSystemMetrics( SM_CXBORDER )
-#define WINDOW_BORDER_HEIGHT													::GetSystemMetrics( SM_CYBORDER )
+#define WINDOW_BORDER_WIDTH														GetSystemMetrics( SM_CXBORDER )
+#define WINDOW_BORDER_HEIGHT													GetSystemMetrics( SM_CYBORDER )
+#define PRIMARY_SCREEN_WIDTH													GetSystemMetrics( SM_CXSCREEN )
+#define PRIMARY_SCREEN_HEIGHT													GetSystemMetrics( SM_CYSCREEN )
 
 #define SHELL_EXECUTE_OPEN_COMMAND												"open"
 #define SHELL_EXECUTE_MAXIMUM_FAILURE_RETURN_VALUE								32

@@ -7,6 +7,8 @@
 #include "Ascii.h"
 #include "Common.h"
 
+#include "ComboBoxWindow.h"
+
 #define MAIN_WINDOW_CLASS_NAME													"Main Toolbar Window Class"
 
 #define MAIN_WINDOW_CLASS_STYLE													0
@@ -21,7 +23,7 @@
 #define MAIN_WINDOW_TEXT														"Toolbar"
 #define MAIN_WINDOW_STYLE														WS_POPUP
 
-#define MAIN_WINDOW_WIDTH														200
+#define MAIN_WINDOW_WIDTH														300
 #define MAIN_WINDOW_HEIGHT														32
 #define MAIN_WINDOW_RIGHT_BORDER												200
 #define MAIN_WINDOW_LEFT														( PRIMARY_SCREEN_WIDTH - ( MAIN_WINDOW_WIDTH + MAIN_WINDOW_RIGHT_BORDER ) )

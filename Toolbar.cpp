@@ -36,6 +36,28 @@ LRESULT CALLBACK MainWindowProcedure( HWND hWndMain, UINT uMessage, WPARAM wPara
 	// Select message
 	switch( uMessage )
 	{
+		case WM_CREATE:
+		{
+			// A create message
+			HINSTANCE hInstance;
+			HFONT hFont;
+
+			// Get instance
+			hInstance = ( ( LPCREATESTRUCT )lParam )->hInstance;
+
+			// Get font
+			hFont = ( HFONT )GetStockObject( DEFAULT_GUI_FONT );
+
+			// Create combo box window
+			if( ComboBoxWindowCreate( hWndMain, hInstance, hFont ) )
+			{
+				// Successfully created combo box window
+			} // End of successfully created combo box window
+
+			// Break out of switch
+			break;
+
+		} // End of a create message
 		case WM_CLOSE:
 		{
 			// A close message
@@ -139,6 +161,12 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE, LPTSTR, int nCmdShow )
 
 				// Update main window
 				UpdateWindow( hWndMain );
+
+				// Add text to combo box window
+				ComboBoxWindowAddText( "1234567890" );
+				ComboBoxWindowAddText( "qwertyuiop" );
+				ComboBoxWindowAddText( "asdfghjkl" );
+				ComboBoxWindowAddText( "zxcvbnm" );
 
 				// Message loop
 				while( GetMessage( &msg, NULL, 0, 0 ) > 0 )

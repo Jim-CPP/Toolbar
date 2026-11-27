@@ -19,7 +19,7 @@
 #define MAIN_WINDOW_CLASS_MENU_NAME												NULL
 #define MAIN_WINDOW_CLASS_ICON_SMALL											LoadIcon( NULL, MAIN_WINDOW_CLASS_ICON_NAME )
 
-#define MAIN_WINDOW_EXTENDED_STYLE												WS_EX_TOPMOST
+#define MAIN_WINDOW_EXTENDED_STYLE												( WS_EX_TOPMOST | WS_EX_TOOLWINDOW )
 #define MAIN_WINDOW_TEXT														"Toolbar"
 #define MAIN_WINDOW_STYLE														WS_POPUP
 

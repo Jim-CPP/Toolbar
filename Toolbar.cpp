@@ -52,12 +52,53 @@ LRESULT CALLBACK MainWindowProcedure( HWND hWndMain, UINT uMessage, WPARAM wPara
 			if( ComboBoxWindowCreate( hWndMain, hInstance, hFont ) )
 			{
 				// Successfully created combo box window
+
 			} // End of successfully created combo box window
 
 			// Break out of switch
 			break;
 
 		} // End of a create message
+		case WM_COMMAND:
+		{
+			// A command message
+
+			// Select command
+			switch( LOWORD( wParam ) )
+			{
+				default:
+				{
+					// Default command
+
+					// See if command message is from combo box window
+					if( IsComboBoxWindow( ( HWND )lParam ) )
+					{
+						// Command message is from combo box window
+
+						// Handle command message from combo box window
+						lResult = ComboBoxWindowHandleCommandMessage( hWndMain, wParam, lParam, &ShowAboutMessage );
+
+					} // End of command message is from combo box window
+					else
+					{
+						// Command message is not from combo box window
+
+						// Call default window procedure
+						lResult = DefWindowProc( hWndMain, uMessage, wParam, lParam );
+
+					} // End of command message is not from combo box window
+
+					// Break out of switch
+					break;
+
+				} // End of default command
+
+			}; // End of selection for command
+
+			// Break out of switch
+			break;
+
+		} // End of a command message
 		case WM_CLOSE:
 		{
 			// A close message
@@ -163,6 +204,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE, LPTSTR, int nCmdShow )
 				UpdateWindow( hWndMain );
 
 				// Add text to combo box window
+				ComboBoxWindowAddText( COMBO_BOX_WINDOW_ABOUT_MENU_ITEM_TEXT );
 				ComboBoxWindowAddText( "1234567890" );
 				ComboBoxWindowAddText( "qwertyuiop" );
 				ComboBoxWindowAddText( "asdfghjkl" );

@@ -18,6 +18,12 @@
 #define COMBO_BOX_WINDOW_WIDTH													PRIMARY_SCREEN_WIDTH
 #define COMBO_BOX_WINDOW_HEIGHT													PRIMARY_SCREEN_HEIGHT
 
+#define COMBO_BOX_WINDOW_ABOUT_MENU_ITEM_TEXT									"[About]"
+
 int ComboBoxWindowAddText( LPCTSTR lpszText );
 
 BOOL ComboBoxWindowCreate( HWND hWndParent, HINSTANCE hInstance, HFONT hFont );
+
+LRESULT ComboBoxWindowHandleCommandMessage( HWND hWndParent, WPARAM wParam, LPARAM lParam, int( *lpAboutFunction )( HWND hWndParent ) );
+
+BOOL IsComboBoxWindow( HWND hWndSupplied );

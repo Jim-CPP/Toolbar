@@ -136,6 +136,105 @@ LRESULT ComboBoxWindowHandleCommandMessage( HWND hWndParent, WPARAM wParam, LPAR
 
 } // End of function ComboBoxWindowHandleCommandMessage
 
+BOOL ComboBoxWindowLoad( LPCTSTR lpszFileName, BOOL bAddAboutItem )
+{
+	BOOL bResult = FALSE;
+
+	HANDLE hFile;
+
+	// Open file
+	hFile = CreateFile( lpszFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL );
+
+	// Ensure that file was opened
+	if( hFile != INVALID_HANDLE_VALUE )
+	{
+		// Successfully opened file
+		DWORD dwFileSize;
+
+		// Get file size
+		dwFileSize = GetFileSize( hFile, NULL );
+
+		// Ensure that file size was got
+		if( dwFileSize != INVALID_FILE_SIZE )
+		{
+			// Successfully got file size
+
+			// Allocate string memory
+			LPTSTR lpszFileText = new char[ dwFileSize + sizeof( char ) ];
+
+			// Read file text
+			if(ReadFile( hFile, lpszFileText, dwFileSize, NULL, NULL ) )
+			{
+				// Successfully read file text
+				LPTSTR lpszItem;
+
+				// Terminate file text
+				lpszFileText[ dwFileSize ] = ( char )NULL;
+
+				// Clear combo box window
+				SendMessage( g_hWndComboBox, CB_RESETCONTENT, ( WPARAM )NULL, ( LPARAM )NULL );
+
+				// See if about item needs to be added to combo box window
+				if( bAddAboutItem )
+				{
+					// About item needs to be added to combo box window
+
+					// Add about item to combo box window
+					SendMessage( g_hWndComboBox, CB_ADDSTRING, ( WPARAM )NULL, ( LPARAM )COMBO_BOX_WINDOW_ABOUT_MENU_ITEM_TEXT );
+
+				} // End of about item needs to be added to combo box window
+
+				// Update return value (assume success)
+				bResult = TRUE;
+
+				// Get first item from file text
+				lpszItem = strtok( lpszFileText, NEW_LINE_TEXT );
+
+				// Loop through all items in file text
+				while( lpszItem )
+				{
+					// Add current item to combo box window
+					if( SendMessage( g_hWndComboBox, CB_ADDSTRING, ( WPARAM )NULL, ( LPARAM )lpszItem ) != CB_ERR )
+					{
+						// Successfully added current item to combo box window
+
+						// Get next item from file text
+						lpszItem = strtok( NULL, NEW_LINE_TEXT );
+
+					} // End of successfully added current item to combo box window
+					else
+					{
+						// Unable to add current item to combo box window
+
+						// Update return value
+						bResult = FALSE;
+
+						// Force exit from loop
+						lpszItem = NULL;
+
+					} // End of unable to add current item to combo box window
+
+				}; // End of loop through all items in file text
+
+
+				// Update return value
+				bResult = TRUE;
+
+			} // End of successfully read file text
+			// Free string memory
+			delete [] lpszFileText;
+
+		} // End of successfully got file size
+
+		// Close file
+		CloseHandle( hFile );
+
+	} // End of successfully opened file
+
+	return bResult;
+
+} // End of function ComboBoxWindowLoad
+
 BOOL IsComboBoxWindow( HWND hWndSupplied )
 {
 	BOOL bResult = FALSE;

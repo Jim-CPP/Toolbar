@@ -203,12 +203,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE, LPTSTR, int nCmdShow )
 				// Update main window
 				UpdateWindow( hWndMain );
 
-				// Add text to combo box window
-				ComboBoxWindowAddText( COMBO_BOX_WINDOW_ABOUT_MENU_ITEM_TEXT );
-				ComboBoxWindowAddText( "1234567890" );
-				ComboBoxWindowAddText( "qwertyuiop" );
-				ComboBoxWindowAddText( "asdfghjkl" );
-				ComboBoxWindowAddText( "zxcvbnm" );
+				// Load shortcuts into combo box window
+				ComboBoxWindowLoad( SHORTCUTS_FILE_NAME, TRUE );
 
 				// Message loop
 				while( GetMessage( &msg, NULL, 0, 0 ) > 0 )

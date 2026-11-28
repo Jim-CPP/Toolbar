@@ -29,6 +29,8 @@
 #define MAIN_WINDOW_LEFT														( PRIMARY_SCREEN_WIDTH - ( MAIN_WINDOW_WIDTH + MAIN_WINDOW_RIGHT_BORDER ) )
 #define MAIN_WINDOW_TOP															0
 
+#define SHORTCUTS_FILE_NAME														"Shortcuts.txt"
+
 #define ABOUT_MESSAGE_TEXT														"Toolbar\r\n"						\
 																				"\r\n"								\
 																				"Written by Jim Smith\r\n"			\

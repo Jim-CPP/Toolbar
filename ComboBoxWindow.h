@@ -26,4 +26,6 @@ BOOL ComboBoxWindowCreate( HWND hWndParent, HINSTANCE hInstance, HFONT hFont );
 
 LRESULT ComboBoxWindowHandleCommandMessage( HWND hWndParent, WPARAM wParam, LPARAM lParam, int( *lpAboutFunction )( HWND hWndParent ) );
 
+BOOL ComboBoxWindowLoad( LPCTSTR lpszFileName, BOOL bAddAboutItem );
+
 BOOL IsComboBoxWindow( HWND hWndSupplied );

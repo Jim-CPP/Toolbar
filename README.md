@@ -1,2 +1,4 @@
-# Minimal
-Minimal Window Application
+# Toolbar
+
+Simple Toolbar
+

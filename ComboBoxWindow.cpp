@@ -99,8 +99,24 @@ LRESULT ComboBoxWindowHandleCommandMessage( HWND hWndParent, WPARAM wParam, LPAR
 					{
 						// This is not the about item
 
-						// Display selected item text
-						MessageBox( hWndParent, lpszItemText, INFORMATION_MESSAGE_CAPTION, ( MB_OK | MB_ICONINFORMATION ) );
+						// Execute item
+						if( ( INT_PTR )ShellExecute( hWndParent, SHELL_EXECUTE_OPEN_COMMAND, lpszItemText, NULL, NULL, SW_SHOWNORMAL ) <= SHELL_EXECUTE_MAXIMUM_FAILURE_RETURN_VALUE )
+						{
+							// Unable to execute item
+
+							// Allocate string memory
+							LPTSTR lpszErrorMessage = new char[ STRING_LENGTH + sizeof( char ) ];
+
+							// Format error message
+							wsprintf( lpszErrorMessage, UNABLE_TO_OPEN_FILE_ERROR_MESSAGE_FORMAT_STRING, lpszItemText );
+
+							// Display error message
+							MessageBox( hWndParent, lpszErrorMessage, ERROR_MESSAGE_CAPTION, ( MB_OK | MB_ICONERROR ) );
+
+							// Free string memory
+							delete [] lpszErrorMessage;
+
+						} // End of unable to execute item
 
 					} // End of this is not the about item
 

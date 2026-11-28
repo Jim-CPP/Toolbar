@@ -1,4 +1,5 @@
-1234567890
-qwertyuiop
-asdfghjkl
-zxcvbnm
+C:\Users\jimps\Documents
+C:\Users\jimps\Downloads
+C:\Users\jimps\Music
+C:\Users\jimps\Pictures
+C:\Users\jimps\Videos
